@@ -8,8 +8,8 @@ package com.example.facepamphlet;
  */
 
 import static com.example.facepamphlet.FacePamphletConstants.*;
-
 import acm.graphics.*;
+
 import java.awt.*;
 //import java.awt.Image.*;
 import java.util.*;
@@ -75,8 +75,14 @@ public class FacePamphletCanvas extends GCanvas {
 		addStatus(profile.getStatus());
 		addPastStatuses(profile.getPastStatuses());
 		addFriends(profile.getFriends());
+		addWorkExperienceLink(profile.getWorkHistory());
 	}
 	
+	private void addWorkExperienceLink(Iterator<WorkHistory> workHistory) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void addName(String name) {
 		GLabel Name = new GLabel(name);
 		Name.setFont(PROFILE_NAME_FONT);

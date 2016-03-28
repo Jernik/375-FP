@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="FacePamphlet">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/acm.jar!/" />
+      <root url="jar://$PROJECT_DIR$/guava-19.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
