@@ -40,10 +40,16 @@ public class FacePamphletConstants {
 	/** Name of font used to display the label "Friends" above the
 	 *  user's list of friends in a profile */
 	public static final String PROFILE_FRIEND_LABEL_FONT = "Dialog-16-bold";
+	
+
+	public static final String PROFILE_WORK_LABEL_FONT = "Dialog-16-bold";
 
 	/** Name of font used to display the names from the user's list
 	 *  of friends in a profile */
 	public static final String PROFILE_FRIEND_FONT = "Dialog-16";
+	
+
+	public static final String PROFILE_WORK_FONT = "Dialog-16";
 
 	/** The width (in pixels) that profile images should be displayed */
 	public static final double IMAGE_WIDTH = 200;

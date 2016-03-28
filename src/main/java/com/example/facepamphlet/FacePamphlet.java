@@ -34,6 +34,16 @@ public class FacePamphlet extends Program  {
 	
 	//keeps track of the current profile
 	private FacePamphletProfile currentProfile = null;
+
+	private JTextField work;
+
+	private JTextField education;
+
+	private JTextField educationGradDate;
+
+	private JTextField workStartDate;
+
+	private JTextField workEndDate;
 	
 	
 	/**
@@ -76,11 +86,42 @@ public class FacePamphlet extends Program  {
 		
 		add(new JButton("Add Friend"), WEST);
 		
+		add(new JLabel(EMPTY_LABEL_TEXT), WEST);
+		JButton workButton = new JButton("Work/Education Experience");
+		add(workButton, WEST);
+
+		
+		add(new JLabel(EMPTY_LABEL_TEXT), WEST);
+		this.work = new JTextField(TEXT_FIELD_SIZE);
+		add(new JLabel("Company"), WEST);
+		add(this.work, WEST);
+		this.workStartDate = new JTextField(TEXT_FIELD_SIZE);
+		add(new JLabel("Start Date"), WEST);
+		add(this.workStartDate, WEST);
+		this.workEndDate = new JTextField(TEXT_FIELD_SIZE);
+		add(new JLabel("End Date"), WEST);
+		add(this.workEndDate, WEST);
+		add(new JButton("Add Work"), WEST);
+		
+		add(new JLabel(EMPTY_LABEL_TEXT), WEST);
+		add(new JLabel("School Name"), WEST);
+		this.education = new JTextField(TEXT_FIELD_SIZE);
+		this.educationGradDate = new JTextField(TEXT_FIELD_SIZE);	
+		add(this.education, WEST);
+		add(new JLabel("Graduation Date"), WEST);
+		add(this.educationGradDate, WEST);
+		add(new JButton("Add Education"), WEST);
+		
+		
+		
 		//Action listeners
 		addActionListeners();
 		this.status.addActionListener(this);
 		this.picture.addActionListener(this);
 		this.friend.addActionListener(this);
+		this.work.addActionListener(this);
+		this.education.addActionListener(this);
+		workButton.addActionListener(this);
 		
 		add(this.canvas);
     }
@@ -160,7 +201,28 @@ public class FacePamphlet extends Program  {
     			this.canvas.displayProfile(profile);
     			this.canvas.showMessage("Status updated to " + statusMessage);
     		}
-    		else{
+    		else {
+    			this.canvas.showMessage("Please select a profile to change status");
+    		}
+    	}
+    	else if(e.getActionCommand().equals("Add Work") && !this.work.getText().equals("")){
+    		if(this.currentProfile != null){
+    			FacePamphletProfile profile = this.profileInfo.getProfile(this.currentProfile.getName());
+    			profile.addWorkHistory(this.work.getText(), this.workStartDate.getText(), this.workStartDate.getText());
+    			this.canvas.displayProfile(profile);
+    			this.canvas.showMessage("Work Added: " + this.work.getText());
+    		} else {
+    			this.canvas.showMessage("Please select a profile to change status");
+    		}
+    	}
+    	
+    	else if(e.getActionCommand().equals("Add Education") && !this.education.getText().equals("")){
+    		if(this.currentProfile != null){
+    			FacePamphletProfile profile = this.profileInfo.getProfile(this.currentProfile.getName());
+    			profile.addEducationHistory(this.education.getText(), this.educationGradDate.getText());
+    			this.canvas.displayProfile(profile);
+    			this.canvas.showMessage("Education Added: " + this.education.getText());
+    		} else {
     			this.canvas.showMessage("Please select a profile to change status");
     		}
     	}
@@ -187,6 +249,13 @@ public class FacePamphlet extends Program  {
     		}
     		else{
     			println("Please select a profile to change picture");
+    		}
+    	}
+    	else if(e.getActionCommand().equals("Work/Education Experience")){
+    		if(this.currentProfile != null) {
+    			this.canvas.showWorkEducation(this.currentProfile);
+    		}else{
+    			this.canvas.showMessage("Please select a profile to change status");
     		}
     	}
     	

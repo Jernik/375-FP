@@ -29,6 +29,7 @@ public class FacePamphletCanvas extends GCanvas {
 	double nameHeight = 0;
 	double lastX = 0;
 	double lastY = 0;
+	private double workHeight;
 	
 	/** 
 	 * Constructor
@@ -75,13 +76,49 @@ public class FacePamphletCanvas extends GCanvas {
 		addStatus(profile.getStatus());
 		addPastStatuses(profile.getPastStatuses());
 		addFriends(profile.getFriends());
-		addWorkExperienceLink(profile.getWorkHistory());
 	}
 	
-	private void addWorkExperienceLink(Iterator<WorkHistory> workHistory) {
-		// TODO Auto-generated method stub
-		
+	public void showWorkEducation(FacePamphletProfile profile) {
+		removeAll();
+		addWorkExperiences(profile.getWorkHistory());
+		addEducationExperiences(profile.getEducationHistory());
 	}
+	
+
+	private void addWorkExperiences(Iterator<WorkHistory> iterator){
+		GLabel Work = new GLabel("Work:");
+		Work.setFont(PROFILE_WORK_LABEL_FONT);
+		double x = getWidth()/2;
+		double y = TOP_MARGIN + this.nameHeight;
+		add(Work, x, y);
+		Iterator<WorkHistory> it = iterator;
+		int i = 1;
+		for(; it.hasNext(); i++) {
+			WorkHistory wh = it.next();
+			GLabel workName = new GLabel(wh.getHistoryName() + " From " + wh.getStartDate() + " To " + wh.getEndDate());
+			workName.setFont(PROFILE_WORK_FONT);
+			double height = y + Work.getHeight() * i;
+			add(workName, x, height);
+		}
+		this.workHeight = i * Work.getHeight();
+	}
+	
+	private void addEducationExperiences(Iterator<EducationHistory> educationHistory) {
+		GLabel Education = new GLabel("Education:");
+		Education.setFont(PROFILE_WORK_LABEL_FONT);
+		double x = getWidth()/2;
+		double y = TOP_MARGIN + this.nameHeight + this.workHeight;
+		add(Education, x, y);
+		Iterator<EducationHistory> it = educationHistory;
+		for(int i = 1; it.hasNext(); i++) {
+			EducationHistory eh= it.next();
+			GLabel educationName = new GLabel(eh.getName() + " Graduated: " + eh.getGraduationDate());
+			educationName.setFont(PROFILE_WORK_FONT);
+			double height = y + Education.getHeight() * i;
+			add(educationName, x, height);
+		}
+	}
+	
 
 	private void addName(String name) {
 		GLabel Name = new GLabel(name);
@@ -166,5 +203,7 @@ public class FacePamphletCanvas extends GCanvas {
 			add(friendName, x, height);
 		}
 	}
+
+	
 	
 }

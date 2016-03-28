@@ -21,7 +21,8 @@ public class FacePamphletProfile {
 	private GImage Image = null;
 	private String Status = "No current status";
 	private boolean statusSet = false;
-	private Queue<WorkHistory> workAndEducation;
+	private ArrayList<WorkHistory> workHistory = new ArrayList<WorkHistory>();
+	private ArrayList<EducationHistory> educationHistory = new ArrayList<EducationHistory>();
 	
 	// Evicting queue of size 1000.  FIFO built-in.
 	private Queue<String> pastStatuses = EvictingQueue.create(1000);
@@ -120,11 +121,19 @@ public class FacePamphletProfile {
 	}
 
 	public Iterator<WorkHistory> getWorkHistory(){
-		return this.workAndEducation.iterator();
+		return this.workHistory.iterator();
 	}
 	
-	public void addWorkHistory(String name, String date){
-		this.workAndEducation.add(new WorkHistory(name, date));
+	public void addWorkHistory(String name, String startDate, String endDate){
+		this.workHistory.add(new WorkHistory(name, startDate, endDate));
+	}
+	
+	public Iterator<EducationHistory> getEducationHistory(){
+		return this.educationHistory.iterator();
+	}
+	
+	public void addEducationHistory(String name, String graduationDate){
+		this.educationHistory.add(new EducationHistory(name, graduationDate));
 	}
 	/** 
 	 * This method returns an iterator over the list of friends 

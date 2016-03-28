@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.class
+target/com/example/facepamphlet/FacePamphlet.class
+target/com/example/facepamphlet/FacePamphletCanvas.class
